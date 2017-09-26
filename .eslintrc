@@ -3,5 +3,8 @@
   "rules": {
     "no-underscore-dangle" : "off",
 	"no-plusplus": "off"
+  },
+  "env": {
+    browser: true
   }
 }
