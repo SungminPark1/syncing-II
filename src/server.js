@@ -4,15 +4,23 @@ const socketio = require('socket.io');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
-const index = fs.readFileSync(`${__dirname}/../client/index.html`);
-
-const onRequest = (request, response) => {
-  response.writeHead(200, { 'Content-Type': 'text/html' });
-  response.write(index);
-  response.end();
+const onRequest = (req, res) => {
+  if (req.url === '/bundle.js') {
+    fs.readFile(`${__dirname}/../hosted/bundle.js`, (err, data) => {
+      res.writeHead(200, { 'Content-Type': 'application/javascript' });
+      res.write(data);
+      res.end();
+    });
+  } else {
+    fs.readFile(`${__dirname}/../hosted/index.html`, (err, data) => {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(data);
+    });
+  }
 };
 
-const app = http.createServer(onRequest).listen(port);
+const app = http.createServer(onRequest);
+app.listen(port);
 console.log(`Listening on 127.0.0.1: ${port}`);
 
 // pass in the http server into socketio and grab the websocket server as io
