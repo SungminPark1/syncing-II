@@ -1,6 +1,9 @@
+const game = require('./game/game.js');
+
 const gameRooms = {};
 
 const onJoined = (socket, io) => {
+  console.log(game);
   /*
   socket.on('join', (data) => {
     socket.join('lobby');
@@ -33,7 +36,7 @@ const onMsg = (socket, io) => {
 const onDisconnect = (socket, io) => {
   socket.on('disconnect', () => {
     // find the disconnected players room and deleted the player
-    
+
   });
 };
 
