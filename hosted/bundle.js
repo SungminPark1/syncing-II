@@ -67,8 +67,7 @@ var drawBombs = function drawBombs() {
 var handleUpdate = function handleUpdate(data) {
   players = data.players;
   bombs = data.bombs;
-  user = players[user.name];
-  scoreBoard.innerHTML = '<p>Your Score ' + user.score + '</p>';
+  scoreBoard.innerHTML = '<p>Your Score ' + players[user.name].score + '</p>';
 
   drawPlayers();
   drawBombs();
