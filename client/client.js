@@ -19,6 +19,10 @@ const myKeys = {
   keydown: [],
 };
 
+function clamp(val, min, max) {
+  return Math.max(min, Math.min(max, val));
+}
+
 // draw players
 const drawPlayers = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -90,6 +94,10 @@ const update = () => {
     user.pos.x += 2;
     updated = true;
   }
+
+  // prevent player from going out of bound
+  user.pos.x = clamp(user.pos.x, user.radius, 500 - user.radius);
+  user.pos.y = clamp(user.pos.y, user.radius, 500 - user.radius);
 
   // if this client's user moves, send to server to update server
   if (updated === true) {
