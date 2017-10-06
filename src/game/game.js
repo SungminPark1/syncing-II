@@ -83,13 +83,16 @@ const createGame = (data) => {
 
       const keys = Object.keys(game.players);
 
+      // check each players for collisions
       for (let i = 0; i < keys.length; i++) {
         const player = game.players[keys[i]];
 
         game.checkCollision(player);
-        game.filterBombs();
-        game.createBombs();
       }
+
+      // filter out non active bombs and create new ones
+      game.filterBombs();
+      game.createBombs();
     },
   };
 
