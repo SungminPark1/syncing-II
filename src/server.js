@@ -30,6 +30,7 @@ const io = socketio(app);
 io.sockets.on('connection', (socket) => {
   ioSockets.onJoined(socket, io);
   ioSockets.onMsg(socket, io);
+  ioSockets.onDisconnect(socket, io);
 });
 
 console.log('websocket server started');
